@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import Die from "../components/Die";
+
 class PlayerDice extends Component {
   render() {
+    const { playerDice } = this.props;
+
     return (
       <div>
-        {this.props.playerDice}
+        {playerDice.map((dieNumber, i) => {
+          return <Die number={dieNumber} key={i} />;
+        })}
       </div>
     );
     // return this.props.playerDice.map((dieValue, i) => {
