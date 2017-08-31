@@ -4,8 +4,18 @@ import { rollDice } from "../actions";
 
 class RollButton extends Component {
   render() {
-    return <button onClick={this.props.rollDice}>Roll</button>;
+    return (
+      <button onClick={() => this.props.rollDice(this.props.currentDice)}>
+        Roll
+      </button>
+    );
   }
 }
 
-export default connect(null, { rollDice })(RollButton);
+function mapStateToProps(state) {
+  return {
+    currentDice: state.playerDice
+  };
+}
+
+export default connect(mapStateToProps, { rollDice })(RollButton);

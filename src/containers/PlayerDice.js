@@ -3,14 +3,20 @@ import { connect } from "react-redux";
 
 import Die from "../components/Die";
 
+import { toggleDie } from "../actions";
+
 class PlayerDice extends Component {
   render() {
     const { playerDice } = this.props;
 
     return (
       <div>
-        {playerDice.map((dieNumber, i) => {
-          return <Die number={dieNumber} key={i} />;
+        {playerDice.map((die, i) => {
+          return (
+            <div key={i} onClick={() => this.props.toggleDie(i)}>
+              <Die number={die.value} frozen={die.frozen} />
+            </div>
+          );
         })}
       </div>
     );
@@ -29,4 +35,4 @@ const mapStateToProps = state => {
   return { playerDice: state.playerDice };
 };
 
-export default connect(mapStateToProps, null)(PlayerDice);
+export default connect(mapStateToProps, { toggleDie })(PlayerDice);

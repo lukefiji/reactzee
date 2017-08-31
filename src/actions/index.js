@@ -1,13 +1,25 @@
-import { ROLL_DICE } from "./actionTypes";
+import { ROLL_DICE, TOGGLE_DIE } from "./actionTypes";
 
 // Roll a new dice
-export function rollDice() {
+export function rollDice(currentDice) {
   // Generate a new array with 5 rolled dice
-  const rolledDice = new Array(5).fill(0).map(die => {
-    return Math.floor(Math.random() * 6) + 1;
+  const rolledDice = currentDice.map(die => {
+    if (die.frozen) {
+      return die;
+    }
+    return { ...die, value: Math.floor(Math.random() * 6) + 1 };
   });
+
   return {
     type: ROLL_DICE,
     rolledDice
+  };
+}
+
+// Toggle a die's frozen state
+export function toggleDie(index) {
+  return {
+    type: TOGGLE_DIE,
+    index
   };
 }
