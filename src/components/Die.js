@@ -13,11 +13,13 @@ const Die = props => {
   const { number } = props;
 
   return (
-    <img
-      src={getImage(number)}
-      alt={number}
-      style={{ border: props.frozen ? "2px solid red" : "none" }}
-    />
+    <div className="Die" onClick={props.onClick}>
+      <img
+        src={getImage(number)}
+        alt={number}
+        style={{ border: props.frozen ? "2px solid coral" : "2px solid white" }}
+      />
+    </div>
   );
 };
 

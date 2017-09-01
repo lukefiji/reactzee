@@ -13,9 +13,12 @@ class PlayerDice extends Component {
       <div>
         {playerDice.map((die, i) => {
           return (
-            <div key={i} onClick={() => this.props.toggleDie(i)}>
-              <Die number={die.value} frozen={die.frozen} />
-            </div>
+            <Die
+              key={i}
+              onClick={() => this.props.toggleDie(i)}
+              number={die.value}
+              frozen={die.frozen}
+            />
           );
         })}
       </div>
