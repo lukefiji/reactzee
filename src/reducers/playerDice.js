@@ -7,12 +7,15 @@ function playerDice(state = [], action) {
       return action.rolledDice;
     case TOGGLE_DIE:
       const { index } = action;
-      // Toggle frozen state of selected die
-      return [
-        ...state.slice(0, index),
-        { ...state[index], frozen: !state[index].frozen },
-        ...state.slice(index + 1)
-      ];
+      // Toggle frozen state of selected die if it doesn't equal zero
+      if (state[index].value !== 0) {
+        return [
+          ...state.slice(0, index),
+          { ...state[index], frozen: !state[index].frozen },
+          ...state.slice(index + 1)
+        ];
+      }
+      return state;
     default:
       return state;
   }
