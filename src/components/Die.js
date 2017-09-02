@@ -18,7 +18,10 @@ const Die = props => {
         src={getImage(number)}
         alt={number}
         style={{
-          border: props.frozen ? "4px solid coral" : "4px solid white",
+          border:
+            props.frozen && props.turnsRemaining > 0
+              ? "4px solid coral"
+              : "4px solid white",
           borderRadius: "12px"
         }}
       />

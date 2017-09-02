@@ -16,6 +16,7 @@ class PlayerDice extends Component {
             <Die
               key={i}
               onClick={() => this.props.toggleDie(i)}
+              turnsRemaining={this.props.turnsRemaining}
               number={die.value}
               frozen={die.frozen}
             />
@@ -35,7 +36,10 @@ class PlayerDice extends Component {
 
 // Allow access to playerDice in state
 const mapStateToProps = state => {
-  return { playerDice: state.playerDice };
+  return {
+    playerDice: state.playerDice,
+    turnsRemaining: state.gameState.turnsRemaining
+  };
 };
 
 export default connect(mapStateToProps, { toggleDie })(PlayerDice);
