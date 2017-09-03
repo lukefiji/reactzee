@@ -15,6 +15,7 @@ export function rollDice(currentDice) {
         if (die.frozen) {
           return die;
         }
+        // Generate a random value for die
         return { ...die, value: Math.floor(Math.random() * 6) + 1 };
       });
 

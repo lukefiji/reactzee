@@ -25,6 +25,7 @@ const initialState = {
     fullHouse: null,
     smallStraight: null,
     largeStraight: null,
+    yahtzee: null,
     chance: null
   }
 };
