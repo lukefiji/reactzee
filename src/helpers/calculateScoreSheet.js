@@ -1,9 +1,23 @@
-const rolledDice = [
-  { frozen: false, value: 1 },
-  { frozen: false, value: 2 },
-  { frozen: false, value: 6 },
-  { frozen: false, value: 4 },
-  { frozen: false, value: 6 }
+const rolledDice = [{
+    frozen: false,
+    value: 2
+  },
+  {
+    frozen: false,
+    value: 3
+  },
+  {
+    frozen: false,
+    value: 3
+  },
+  {
+    frozen: false,
+    value: 2
+  },
+  {
+    frozen: false,
+    value: 3
+  }
 ];
 
 // Calculate score sheet inputs
@@ -23,7 +37,7 @@ function calculateScoreSheet(rolledDice) {
   // Lower Section
   const threeOfAKind = calculateMultiples(diceArr, 3);
   const fourOfAKind = calculateMultiples(diceArr, 4);
-  const fullHouse = null;
+  const fullHouse = calculateFullHouse(diceArr);
   const smallStraight = calculateSmallStraight(diceArr);
   const largeStraight = calculateLargeStraight(diceArr);
   const yahtzee = calculateYahtzee(diceArr);
@@ -61,28 +75,29 @@ function calculateSingles(diceArr, diceVal) {
 
 // Calculate dice that match three-of-a-kind or four-of-a-kind
 function calculateMultiples(diceArr, numOfSameDice) {
-  if (findMultiples(diceArr, numOfSameDice)) {
-    return sumOfDice(diceArr);
-  } else {
-    return 0;
-  }
+  const areMultiples = findMultiples(diceArr, numOfSameDice)
+  return areMultiples ? sumOfDice(diceArr) : 0;
 }
 
 // Detect if there is a number of same values in array
-function findMultiples(diceArr, numOfSameDice) {
+// exactMatch is to help with finding a full house
+function findMultiples(diceArr, numOfSameDice, exactMatch = false) {
   // Initialize an array of values that match
   const matchingArr = [];
 
   // Loop through each dice
   diceArr.forEach(diceVal => {
     // Get the count of each die in the current roll
-    const dieCount = diceArr.filter(function(x) {
+    const dieCount = diceArr.filter(function (x) {
       return x === diceVal;
     }).length;
 
     // If it is a triplet/four-of-a-kind and
     // the value isn't already in matchingArr
-    if (dieCount >= numOfSameDice && !matchingArr.includes(diceVal)) {
+    if (!exactMatch && dieCount >= numOfSameDice && !matchingArr.includes(diceVal)) {
+      matchingArr.push(diceVal);
+      // If exact match is true
+    } else if (exactMatch && dieCount === numOfSameDice && !matchingArr.includes(diceVal)) {
       matchingArr.push(diceVal);
     }
   });
@@ -103,36 +118,40 @@ function arrContains(arr, contains) {
 
 function calculateSmallStraight(diceArr) {
   // List possible combinations
-  const possibleCombos = [[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6]];
+  const possibleCombos = [
+    [1, 2, 3, 4],
+    [2, 3, 4, 5],
+    [3, 4, 5, 6]
+  ];
 
   // If any of the combos are in the dice array
   const hasSmallStraight = possibleCombos.some(combination =>
     arrContains(diceArr, combination)
   );
 
-  if (hasSmallStraight) {
-    return 30;
-  } else {
-    return 0;
-  }
+  return hasSmallStraight ? 30 : 0;
 }
 
 function calculateLargeStraight(diceArr) {
-  const possibleCombos = [[1, 2, 3, 4, 5], [2, 3, 4, 5, 6]];
+  const possibleCombos = [
+    [1, 2, 3, 4, 5],
+    [2, 3, 4, 5, 6]
+  ];
 
   const hasLargeStraight = possibleCombos.some(combination =>
     arrContains(diceArr, combination)
   );
 
-  if (hasLargeStraight) {
-    return 40;
-  } else {
-    return 0;
-  }
+  return hasLargeStraight ? 40 : 0;
 }
 
 function calculateYahtzee(diceArr) {
-  return 0;
+  // If every value equals the first
+  const hasYahtzee = diceArr.every(val => {
+    return val === diceArr[0];
+  });
+
+  return hasYahtzee ? 50 : 0;
 }
 
 function sumOfDice(diceArr) {
@@ -142,8 +161,11 @@ function sumOfDice(diceArr) {
   }, 0);
 }
 
-// const test = calculateScoreSheet(rolledDice);
-// console.log(JSON.stringify(test, null, 2));
+function calculateFullHouse(diceArr) {
+  // If there is an exact double and exact triple found
+  const isFullHouse = findMultiples(diceArr, 2, true) && findMultiples(diceArr, 3, true);
+  return isFullHouse ? 25 : 0;
+}
 
-const test2 = findFullHouse([2, 2, 4, 4, 0]);
-console.log(test2);
+const test = calculateScoreSheet(rolledDice);
+console.log(JSON.stringify(test, null, 2));
