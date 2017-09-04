@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import PlayerDice from "../containers/PlayerDice";
 import RollButton from "../containers/RollButton";
+import ScoreTable from "../containers/ScoreTable";
 
 import "./App.css";
 
@@ -15,6 +16,7 @@ class App extends Component {
         <div className="App-intro">
           <PlayerDice />
           <RollButton />
+          <ScoreTable />
         </div>
       </div>
     );

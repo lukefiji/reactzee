@@ -1,28 +1,6 @@
-const rolledDice = [{
-    frozen: false,
-    value: 2
-  },
-  {
-    frozen: false,
-    value: 3
-  },
-  {
-    frozen: false,
-    value: 3
-  },
-  {
-    frozen: false,
-    value: 2
-  },
-  {
-    frozen: false,
-    value: 3
-  }
-];
-
 // Calculate score sheet inputs
 // Returns { aces, twos, threes, ... }
-function calculateScoreSheet(rolledDice) {
+export default function calculateScoreSheet(rolledDice) {
   // Convert rolledDice object into array
   const diceArr = rolledDice.map(die => die.value);
 
@@ -43,6 +21,7 @@ function calculateScoreSheet(rolledDice) {
   const yahtzee = calculateYahtzee(diceArr);
   const chance = sumOfDice(diceArr);
 
+  // Return scoreboard object
   return {
     aces,
     twos,
@@ -60,8 +39,6 @@ function calculateScoreSheet(rolledDice) {
   };
 }
 
-calculateScoreSheet(rolledDice);
-
 // Calculate the score for singles, from 1 - 6.
 function calculateSingles(diceArr, diceVal) {
   return diceArr.reduce((sum, val) => {
@@ -75,7 +52,7 @@ function calculateSingles(diceArr, diceVal) {
 
 // Calculate dice that match three-of-a-kind or four-of-a-kind
 function calculateMultiples(diceArr, numOfSameDice) {
-  const areMultiples = findMultiples(diceArr, numOfSameDice)
+  const areMultiples = findMultiples(diceArr, numOfSameDice);
   return areMultiples ? sumOfDice(diceArr) : 0;
 }
 
@@ -88,16 +65,24 @@ function findMultiples(diceArr, numOfSameDice, exactMatch = false) {
   // Loop through each dice
   diceArr.forEach(diceVal => {
     // Get the count of each die in the current roll
-    const dieCount = diceArr.filter(function (x) {
+    const dieCount = diceArr.filter(function(x) {
       return x === diceVal;
     }).length;
 
     // If it is a triplet/four-of-a-kind and
     // the value isn't already in matchingArr
-    if (!exactMatch && dieCount >= numOfSameDice && !matchingArr.includes(diceVal)) {
+    if (
+      !exactMatch &&
+      dieCount >= numOfSameDice &&
+      !matchingArr.includes(diceVal)
+    ) {
       matchingArr.push(diceVal);
       // If exact match is true
-    } else if (exactMatch && dieCount === numOfSameDice && !matchingArr.includes(diceVal)) {
+    } else if (
+      exactMatch &&
+      dieCount === numOfSameDice &&
+      !matchingArr.includes(diceVal)
+    ) {
       matchingArr.push(diceVal);
     }
   });
@@ -118,11 +103,7 @@ function arrContains(arr, contains) {
 
 function calculateSmallStraight(diceArr) {
   // List possible combinations
-  const possibleCombos = [
-    [1, 2, 3, 4],
-    [2, 3, 4, 5],
-    [3, 4, 5, 6]
-  ];
+  const possibleCombos = [[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6]];
 
   // If any of the combos are in the dice array
   const hasSmallStraight = possibleCombos.some(combination =>
@@ -133,10 +114,7 @@ function calculateSmallStraight(diceArr) {
 }
 
 function calculateLargeStraight(diceArr) {
-  const possibleCombos = [
-    [1, 2, 3, 4, 5],
-    [2, 3, 4, 5, 6]
-  ];
+  const possibleCombos = [[1, 2, 3, 4, 5], [2, 3, 4, 5, 6]];
 
   const hasLargeStraight = possibleCombos.some(combination =>
     arrContains(diceArr, combination)
@@ -163,9 +141,10 @@ function sumOfDice(diceArr) {
 
 function calculateFullHouse(diceArr) {
   // If there is an exact double and exact triple found
-  const isFullHouse = findMultiples(diceArr, 2, true) && findMultiples(diceArr, 3, true);
+  const isFullHouse =
+    findMultiples(diceArr, 2, true) && findMultiples(diceArr, 3, true);
   return isFullHouse ? 25 : 0;
 }
 
-const test = calculateScoreSheet(rolledDice);
-console.log(JSON.stringify(test, null, 2));
+// const test = calculateScoreSheet(rolledDice);
+// console.log(JSON.stringify(test, null, 2));
