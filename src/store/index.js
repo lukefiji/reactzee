@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
 import rootReducer from "../reducers";
@@ -13,24 +13,31 @@ const initialState = {
   ],
   gameState: { turnsRemaining: 3 },
   scoreSheet: {
-    aces: null,
-    twos: null,
-    threes: null,
-    fours: null,
-    fives: null,
-    sixes: null,
-    upperBonus: null,
-    threeOfAKind: null,
-    fourOfAKind: null,
-    fullHouse: null,
-    smallStraight: null,
-    largeStraight: null,
-    yahtzee: null,
-    chance: null
+    aces: { value: null, frozen: false },
+    twos: { value: null, frozen: false },
+    threes: { value: null, frozen: false },
+    fours: { value: null, frozen: false },
+    fives: { value: null, frozen: false },
+    sixes: { value: null, frozen: false },
+    upperBonus: { value: null, frozen: false },
+    threeOfAKind: { value: null, frozen: false },
+    fourOfAKind: { value: null, frozen: false },
+    fullHouse: { value: null, frozen: false },
+    smallStraight: { value: null, frozen: false },
+    largeStraight: { value: null, frozen: false },
+    yahtzee: { value: null, frozen: false },
+    chance: { value: null, frozen: false }
   }
 };
 
 // Create a store from the root reducer
-let store = createStore(rootReducer, initialState, applyMiddleware(thunk));
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  rootReducer,
+  initialState,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 export default store;

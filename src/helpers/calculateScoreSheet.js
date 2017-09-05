@@ -23,19 +23,19 @@ export default function calculateScoreSheet(rolledDice) {
 
   // Return scoreboard object
   return {
-    aces,
-    twos,
-    threes,
-    fours,
-    fives,
-    sixes,
-    threeOfAKind,
-    fourOfAKind,
-    fullHouse,
-    smallStraight,
-    largeStraight,
-    yahtzee,
-    chance
+    aces: { value: aces },
+    twos: { value: twos },
+    threes: { value: threes },
+    fours: { value: fours },
+    fives: { value: fives },
+    sixes: { value: sixes },
+    threeOfAKind: { value: threeOfAKind },
+    fourOfAKind: { value: fourOfAKind },
+    fullHouse: { value: fullHouse },
+    smallStraight: { value: smallStraight },
+    largeStraight: { value: largeStraight },
+    yahtzee: { value: yahtzee },
+    chance: { value: chance }
   };
 }
 
