@@ -4,7 +4,12 @@ const ScoreRow = props => {
   return (
     <tr>
       <td>{props.name}</td>
-      <td>{props.value}</td>
+      <td
+        onClick={() => props.onScoreClick(props.scoreItem)}
+        style={{ color: props.frozen ? "red" : "black" }}
+      >
+        {props.value}
+      </td>
     </tr>
   );
 };

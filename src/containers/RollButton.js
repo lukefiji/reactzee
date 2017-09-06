@@ -5,16 +5,20 @@ import { rollDice } from "../actions";
 class RollButton extends Component {
   render() {
     return (
-      <button onClick={() => this.props.rollDice(this.props.currentDice)}>
-        Roll
-      </button>
+      <div>
+        <div>Rolls remaining: {this.props.rollsRemaining}</div>
+        <button onClick={() => this.props.rollDice(this.props.currentDice)}>
+          Roll
+        </button>
+      </div>
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    currentDice: state.playerDice
+    currentDice: state.playerDice,
+    rollsRemaining: state.gameState.turnsRemaining
   };
 }
 

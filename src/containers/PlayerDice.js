@@ -7,7 +7,7 @@ import { toggleDie } from "../actions";
 
 class PlayerDice extends Component {
   render() {
-    const { playerDice } = this.props;
+    const { playerDice, toggleDie, turnsRemaining } = this.props;
 
     return (
       <div>
@@ -15,8 +15,8 @@ class PlayerDice extends Component {
           return (
             <Die
               key={i}
-              onClick={() => this.props.toggleDie(i)}
-              turnsRemaining={this.props.turnsRemaining}
+              onClick={() => toggleDie(i)}
+              turnsRemaining={turnsRemaining}
               number={die.value}
               frozen={die.frozen}
             />
@@ -24,13 +24,6 @@ class PlayerDice extends Component {
         })}
       </div>
     );
-    // return this.props.playerDice.map((dieValue, i) => {
-    //   return (
-    //     <div key="i">
-    //       {dieValue}
-    //     </div>
-    //   );
-    // });
   }
 }
 

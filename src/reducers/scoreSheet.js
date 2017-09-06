@@ -1,4 +1,4 @@
-import { ROLL_DICE } from "../actions/actionTypes";
+import { ROLL_DICE, FREEZE_SCORE } from "../actions/actionTypes";
 import calculateScoreSheet from "../helpers/calculateScoreSheet";
 
 function scoreSheet(state = {}, action) {
@@ -9,9 +9,19 @@ function scoreSheet(state = {}, action) {
       // Create new state object to diff
       const updatedScoreSheet = { ...state };
       Object.keys(scoreSheet).forEach(name => {
-        updatedScoreSheet[name] = { ...state[name], ...scoreSheet[name] };
+        // Update only if it isn't frozen
+        if (!updatedScoreSheet[name].frozen) {
+          updatedScoreSheet[name] = { ...state[name], ...scoreSheet[name] };
+        }
       });
       return updatedScoreSheet;
+    case FREEZE_SCORE:
+      const { scoreItem } = action;
+      // Return new state with frozen die
+      return {
+        ...state,
+        [scoreItem]: { ...state[scoreItem], frozen: true }
+      };
     default:
       return state;
   }

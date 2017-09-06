@@ -1,4 +1,4 @@
-import { ROLL_DICE, TOGGLE_DIE } from "./actionTypes";
+import { ROLL_DICE, TOGGLE_DIE, FREEZE_SCORE } from "./actionTypes";
 
 // Roll a new dice
 export function rollDice(currentDice) {
@@ -33,5 +33,13 @@ export function toggleDie(index) {
   return {
     type: TOGGLE_DIE,
     index
+  };
+}
+
+// Freeze a score
+export function freezeScore(scoreItem) {
+  return {
+    type: FREEZE_SCORE,
+    scoreItem
   };
 }
