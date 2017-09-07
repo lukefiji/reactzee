@@ -6,7 +6,7 @@ const ScoreRow = props => {
       <td>{props.name}</td>
       <td
         onClick={() => props.onScoreClick(props.scoreItem)}
-        style={{ color: props.frozen ? "red" : "black" }}
+        style={{ color: props.frozen ? "black" : "#cccccc" }}
       >
         {props.value}
       </td>

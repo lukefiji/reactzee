@@ -1,4 +1,4 @@
-import { ROLL_DICE, TOGGLE_DIE } from "../actions/actionTypes";
+import { ROLL_DICE, TOGGLE_DIE, FREEZE_SCORE } from "../actions/actionTypes";
 
 function playerDice(state = [], action) {
   switch (action.type) {
@@ -16,6 +16,11 @@ function playerDice(state = [], action) {
         ];
       }
       return state;
+    case FREEZE_SCORE:
+      // Unfreeze all dice and set blank die
+      return state.map(die => {
+        return { value: 0, frozen: false };
+      });
     default:
       return state;
   }

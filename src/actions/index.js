@@ -5,8 +5,7 @@ export function rollDice(currentDice) {
   // Utilizing Redux Thunk to get state
   return (dispatch, getState) => {
     // Get gameState.turnsRemaining slice of state
-    const { gameState } = getState();
-    const { turnsRemaining } = gameState;
+    const { gameState: { turnsRemaining } } = getState();
 
     // Only dispatch if player has turns left
     if (turnsRemaining > 0) {
@@ -38,8 +37,19 @@ export function toggleDie(index) {
 
 // Freeze a score
 export function freezeScore(scoreItem) {
-  return {
-    type: FREEZE_SCORE,
-    scoreItem
+  return (dispatch, getState) => {
+    // Get gameState.scoreSheet slice of state
+    const { scoreSheet, gameState: { scoreFrozen } } = getState();
+
+    // Single out score item
+    const item = scoreSheet[scoreItem];
+
+    // Dispatch only if a value exists and it isn't frozen
+    if (item.value && !item.frozen && !scoreFrozen) {
+      dispatch({
+        type: FREEZE_SCORE,
+        scoreItem
+      });
+    }
   };
 }
