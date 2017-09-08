@@ -19,7 +19,7 @@ const initialState = {
     fours: { value: null, frozen: false },
     fives: { value: null, frozen: false },
     sixes: { value: null, frozen: false },
-    upperBonus: { value: null, frozen: false },
+    upperBonus: { value: null },
     threeOfAKind: { value: null, frozen: false },
     fourOfAKind: { value: null, frozen: false },
     fullHouse: { value: null, frozen: false },
