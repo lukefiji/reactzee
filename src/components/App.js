@@ -4,8 +4,6 @@ import PlayerDice from "../containers/PlayerDice";
 import RollButton from "../containers/RollButton";
 import ScoreTable from "../containers/ScoreTable";
 
-import "./App.css";
-
 class App extends Component {
   render() {
     return (

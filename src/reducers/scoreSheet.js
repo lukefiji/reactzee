@@ -12,7 +12,7 @@ function scoreSheet(state = {}, action) {
       const updatedScoreSheet = {
         ...state
       };
-      const diff = diffScores(scoreSheet, updatedScoreSheet);
+      const diffedScores = diffScores(scoreSheet, updatedScoreSheet);
       Object.keys(scoreSheet).forEach(name => {
         // Update only if value isn't already frozen
         if (!updatedScoreSheet[name].frozen) {

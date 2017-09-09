@@ -13,9 +13,10 @@ const Die = props => {
   const { number } = props;
 
   return (
-    <div className="Die" onClick={props.onClick}>
+    <div className="die__wrapper" onClick={props.onClick}>
       <img
         src={getImage(number)}
+        className="die__image"
         alt={number}
         style={{
           border:

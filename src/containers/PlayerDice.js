@@ -10,7 +10,7 @@ class PlayerDice extends Component {
     const { playerDice, toggleDie, turnsRemaining } = this.props;
 
     return (
-      <div>
+      <div className="dice">
         {playerDice.map((die, i) => {
           return (
             <Die
