@@ -45,7 +45,7 @@ export function freezeScore(scoreItem) {
     const item = scoreSheet[scoreItem];
 
     // Dispatch only if a value exists and it isn't frozen
-    if (item.value && !item.frozen && !scoreFrozen) {
+    if (item.value !== null && !item.frozen && !scoreFrozen) {
       dispatch({
         type: FREEZE_SCORE,
         scoreItem
