@@ -31,12 +31,38 @@ function scoreSheet(state = {}, action) {
       return updatedScoreSheet;
     case FREEZE_SCORE:
       const { scoreItem } = action;
-      const { aces, twos, threes, fours, fives, sixes } = state;
 
       // Calculate upper bonus score
-      let upperBonus = { ...state[upperBonus] };
-      const upperBonusScore = aces + twos + threes + fours + fives + sixes;
-      if (upperBonusScore >= 63) upperBonus = { value: 35 };
+      let upperBonus = { ...state.upperBonus };
+
+      const upperBonusScoreItems = [
+        "aces",
+        "twos",
+        "threes",
+        "fours",
+        "fives",
+        "sixes"
+      ];
+
+      // If current action is freezing an upper
+      // bonus score, include that in the total
+      const currentVal = upperBonusScoreItems.includes(scoreItem)
+        ? state[scoreItem].value
+        : 0;
+
+      // Get total core of all upper bonus items
+      const upperBonusScore =
+        currentVal +
+        upperBonusScoreItems
+          .filter(key => state[key].frozen === true)
+          .reduce((sum, key) => {
+            return sum + state[key].value;
+          }, 0);
+
+      // Activate score if upper bonus total is >= 63
+      if (upperBonusScore >= 63) {
+        upperBonus = { upperBonus: { value: 35 } };
+      }
 
       // Return new state with frozen die
       return {

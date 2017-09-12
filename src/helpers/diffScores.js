@@ -5,7 +5,9 @@
 export default function diffScores(scores, updatedScores) {
   // Get a list of unfrozen score keys
   const unfrozenScoreKeys = Object.keys(updatedScores).filter(key => {
-    return key !== "upperBonus" ? !updatedScores[key].frozen : "";
+    return updatedScores[key] && key !== "upperBonus"
+      ? !updatedScores[key].frozen
+      : "";
   });
 
   // Create an object of only unfrozen scores
