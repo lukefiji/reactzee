@@ -5,11 +5,11 @@ function gameState(state = {}, action) {
     case ROLL_DICE:
       return {
         ...state,
-        turnsRemaining: state.turnsRemaining - 1,
+        rollsRemaining: state.rollsRemaining - 1,
         scoreFrozen: false
       };
     case FREEZE_SCORE:
-      return { ...state, turnsRemaining: 3, scoreFrozen: true };
+      return { ...state, rollsRemaining: 3, scoreFrozen: true };
     default:
       return state;
   }

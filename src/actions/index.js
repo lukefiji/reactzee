@@ -4,11 +4,11 @@ import { ROLL_DICE, TOGGLE_DIE, FREEZE_SCORE } from "./actionTypes";
 export function rollDice(currentDice) {
   // Utilizing Redux Thunk to get state
   return (dispatch, getState) => {
-    // Get gameState.turnsRemaining slice of state
-    const { gameState: { turnsRemaining } } = getState();
+    // Get gameState.rollsRemaining slice of state
+    const { gameState: { rollsRemaining } } = getState();
 
     // Only dispatch if player has turns left
-    if (turnsRemaining > 0) {
+    if (rollsRemaining > 0) {
       // Generate a new array with 5 rolled dice
       const rolledDice = currentDice.map(die => {
         if (die.frozen) {
@@ -40,6 +40,8 @@ export function freezeScore(scoreItem) {
   return (dispatch, getState) => {
     // Get gameState.scoreSheet slice of state
     const { scoreSheet, gameState: { scoreFrozen } } = getState();
+
+    console.log(scoreSheet);
 
     // Single out score item
     const item = scoreSheet[scoreItem];

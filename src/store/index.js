@@ -11,7 +11,7 @@ const initialState = {
     { frozen: false, value: 0 },
     { frozen: false, value: 0 }
   ],
-  gameState: { turnsRemaining: 3, scoresFrozen: false },
+  gameState: { rollsRemaining: 3, scoresFrozen: false },
   scoreSheet: {
     aces: { value: null, frozen: false },
     twos: { value: null, frozen: false },

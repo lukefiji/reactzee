@@ -20,10 +20,10 @@ const Die = props => {
         alt={number}
         style={{
           border:
-            props.frozen && props.turnsRemaining > 0
-              ? "4px solid coral"
-              : "4px solid white",
-          borderRadius: "12px"
+            props.frozen && props.rollsRemaining > 0
+              ? "4px solid #aaaaaa"
+              : "4px solid rgba(255, 255, 255, 0)",
+          borderRadius: "16px"
         }}
       />
     </div>

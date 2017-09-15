@@ -7,7 +7,7 @@ import { toggleDie } from "../actions";
 
 class PlayerDice extends Component {
   render() {
-    const { playerDice, toggleDie, turnsRemaining } = this.props;
+    const { playerDice, toggleDie, rollsRemaining } = this.props;
 
     return (
       <div className="dice">
@@ -16,7 +16,7 @@ class PlayerDice extends Component {
             <Die
               key={i}
               onClick={() => toggleDie(i)}
-              turnsRemaining={turnsRemaining}
+              rollsRemaining={rollsRemaining}
               number={die.value}
               frozen={die.frozen}
             />
@@ -31,7 +31,7 @@ class PlayerDice extends Component {
 const mapStateToProps = state => {
   return {
     playerDice: state.playerDice,
-    turnsRemaining: state.gameState.turnsRemaining
+    rollsRemaining: state.gameState.rollsRemaining
   };
 };
 

@@ -7,7 +7,10 @@ class RollButton extends Component {
     return (
       <div>
         <div>Rolls remaining: {this.props.rollsRemaining}</div>
-        <button onClick={() => this.props.rollDice(this.props.currentDice)}>
+        <button
+          className="button button__roll"
+          onClick={() => this.props.rollDice(this.props.currentDice)}
+        >
           Roll
         </button>
       </div>
@@ -18,7 +21,7 @@ class RollButton extends Component {
 function mapStateToProps(state) {
   return {
     currentDice: state.playerDice,
-    rollsRemaining: state.gameState.turnsRemaining
+    rollsRemaining: state.gameState.rollsRemaining
   };
 }
 
