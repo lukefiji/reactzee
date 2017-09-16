@@ -1,4 +1,4 @@
-import { ROLL_DICE, TOGGLE_DIE, FREEZE_SCORE } from "./actionTypes";
+import { ROLL_DICE, TOGGLE_DIE, FREEZE_SCORE, END_GAME } from "./actionTypes";
 
 // Roll a new dice
 export function rollDice(currentDice) {
@@ -52,6 +52,27 @@ export function freezeScore(scoreItem) {
         type: FREEZE_SCORE,
         scoreItem
       });
+
+      if (allValuesFrozen(scoreSheet, scoreItem)) {
+        dispatch({
+          type: END_GAME
+        });
+      }
     }
+
+    // End game if all values are fozen
   };
+}
+
+function allValuesFrozen(scoreSheet, scoreItem) {
+  // Add current item to scoreSheet state (because it represents the state before freeze)
+  let newScoreSheet = {
+    ...scoreSheet,
+    [scoreItem]: { ...scoreSheet[scoreItem], frozen: true }
+  };
+
+  // Retun true if all scores are frozen
+  return Object.keys(newScoreSheet)
+    .filter(scoreItem => scoreItem !== "upperBonus")
+    .every(scoreItem => newScoreSheet[scoreItem].frozen === true);
 }

@@ -50,7 +50,7 @@ function scoreSheet(state = {}, action) {
         ? state[scoreItem].value
         : 0;
 
-      // Get total core of all upper bonus items
+      // Get total score of all upper bonus items
       const upperBonusScore =
         currentVal +
         upperBonusScoreItems
@@ -61,13 +61,13 @@ function scoreSheet(state = {}, action) {
 
       // Activate score if upper bonus total is >= 63
       if (upperBonusScore >= 63) {
-        upperBonus = { upperBonus: { value: 35 } };
+        upperBonus = { value: 35 };
       }
 
       // Return new state with frozen die
       return {
         ...state,
-        ...upperBonus,
+        upperBonus,
         [scoreItem]: {
           ...state[scoreItem],
           frozen: true
