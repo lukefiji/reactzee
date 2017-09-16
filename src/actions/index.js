@@ -1,4 +1,10 @@
-import { ROLL_DICE, TOGGLE_DIE, FREEZE_SCORE, END_GAME } from "./actionTypes";
+import {
+  ROLL_DICE,
+  TOGGLE_DIE,
+  FREEZE_SCORE,
+  END_GAME,
+  NEW_GAME
+} from "./actionTypes";
 
 // Roll a new dice
 export function rollDice(currentDice) {
@@ -61,6 +67,12 @@ export function freezeScore(scoreItem) {
     }
 
     // End game if all values are fozen
+  };
+}
+
+export function startNewGame() {
+  return {
+    type: NEW_GAME
   };
 }
 
