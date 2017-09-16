@@ -2,6 +2,8 @@ import { combineReducers } from "redux";
 
 import { NEW_GAME } from "../actions/actionTypes";
 
+import newGameState from "../store/newGameState";
+
 // Importing reducer slices
 import playerDice from "./playerDice";
 import gameState from "./gameState";
@@ -14,9 +16,11 @@ const appReducer = combineReducers({
 });
 
 const rootReducer = (state, action) => {
+  // Starting a new game
   if (action.type === NEW_GAME) {
     console.log("Starting new game...");
-    // state = undefined;
+    // Load new game state
+    state = newGameState;
   }
 
   return appReducer(state, action);
