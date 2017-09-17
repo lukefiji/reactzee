@@ -1,6 +1,8 @@
 import React from "react";
 
 const ScoreRow = props => {
+  const displayScore = !props.frozen && props.scoresFrozen ? "" : props.value;
+
   return (
     <tr>
       <td>{props.name}</td>
@@ -8,7 +10,7 @@ const ScoreRow = props => {
         onClick={() => props.onScoreClick(props.scoreItem)}
         style={{ color: props.frozen ? "black" : "#aaaaaa" }}
       >
-        {props.value}
+        {displayScore}
       </td>
     </tr>
   );

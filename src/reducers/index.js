@@ -18,11 +18,11 @@ const appReducer = combineReducers({
 const rootReducer = (state, action) => {
   // Starting a new game
   if (action.type === NEW_GAME) {
-    console.log("Starting new game...");
     // Load new game state
     state = newGameState;
   }
 
+  // Delegate state and actions to combined reducers
   return appReducer(state, action);
 };
 

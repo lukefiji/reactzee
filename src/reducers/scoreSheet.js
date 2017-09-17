@@ -64,7 +64,7 @@ function scoreSheet(state = {}, action) {
         upperBonus = { value: 35 };
       }
 
-      // Return new state with frozen die
+      // Return new state with new frozen score
       return {
         ...state,
         upperBonus,

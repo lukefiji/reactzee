@@ -7,7 +7,7 @@ import ScoreRow from "../components/ScoreRow";
 
 class ScoreTable extends Component {
   render() {
-    const { scores, freezeScore } = this.props;
+    const { scores, freezeScore, scoresFrozen } = this.props;
     return (
       <div className="table__container">
         <table>
@@ -24,6 +24,7 @@ class ScoreTable extends Component {
               value={scores.aces.value}
               frozen={scores.aces.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <ScoreRow
               name="Twos"
@@ -31,6 +32,7 @@ class ScoreTable extends Component {
               value={scores.twos.value}
               frozen={scores.twos.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <ScoreRow
               name="Threes"
@@ -38,6 +40,7 @@ class ScoreTable extends Component {
               value={scores.threes.value}
               frozen={scores.threes.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <ScoreRow
               name="Fours"
@@ -45,6 +48,7 @@ class ScoreTable extends Component {
               value={scores.fours.value}
               frozen={scores.fours.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <ScoreRow
               name="Fives"
@@ -52,6 +56,7 @@ class ScoreTable extends Component {
               value={scores.fives.value}
               frozen={scores.fives.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <ScoreRow
               name="Sixes"
@@ -59,6 +64,7 @@ class ScoreTable extends Component {
               value={scores.sixes.value}
               frozen={scores.sixes.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <tr>
               <td>Upper Bonus</td>
@@ -80,6 +86,7 @@ class ScoreTable extends Component {
               value={scores.threeOfAKind.value}
               frozen={scores.threeOfAKind.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <ScoreRow
               name="Four of a Kind"
@@ -87,6 +94,7 @@ class ScoreTable extends Component {
               value={scores.fourOfAKind.value}
               frozen={scores.fourOfAKind.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <ScoreRow
               name="Full House"
@@ -94,6 +102,7 @@ class ScoreTable extends Component {
               value={scores.fullHouse.value}
               frozen={scores.fullHouse.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <ScoreRow
               name="Small Straight"
@@ -101,6 +110,7 @@ class ScoreTable extends Component {
               value={scores.smallStraight.value}
               frozen={scores.smallStraight.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <ScoreRow
               name="Large Straight"
@@ -108,6 +118,7 @@ class ScoreTable extends Component {
               value={scores.largeStraight.value}
               frozen={scores.largeStraight.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <ScoreRow
               name="Yahtzee"
@@ -115,6 +126,7 @@ class ScoreTable extends Component {
               value={scores.yahtzee.value}
               frozen={scores.yahtzee.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
             <ScoreRow
               name="Chance"
@@ -122,6 +134,7 @@ class ScoreTable extends Component {
               value={scores.chance.value}
               frozen={scores.chance.frozen}
               onScoreClick={freezeScore}
+              scoresFrozen={scoresFrozen}
             />
           </tbody>
         </table>
@@ -132,7 +145,8 @@ class ScoreTable extends Component {
 
 function mapStateToProps(state) {
   return {
-    scores: state.scoreSheet
+    scores: state.scoreSheet,
+    scoresFrozen: state.gameState.scoresFrozen
   };
 }
 

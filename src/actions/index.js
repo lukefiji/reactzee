@@ -45,7 +45,7 @@ export function toggleDie(index) {
 export function freezeScore(scoreItem) {
   return (dispatch, getState) => {
     // Get gameState.scoreSheet slice of state
-    const { scoreSheet, gameState: { scoreFrozen } } = getState();
+    const { scoreSheet, gameState: { scoresFrozen } } = getState();
 
     console.log(scoreSheet);
 
@@ -53,7 +53,7 @@ export function freezeScore(scoreItem) {
     const item = scoreSheet[scoreItem];
 
     // Dispatch only if a value exists and it isn't frozen
-    if (item.value !== null && !item.frozen && !scoreFrozen) {
+    if (item.value !== null && !item.frozen && !scoresFrozen) {
       dispatch({
         type: FREEZE_SCORE,
         scoreItem

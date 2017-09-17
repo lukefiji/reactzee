@@ -6,10 +6,10 @@ function gameState(state = {}, action) {
       return {
         ...state,
         rollsRemaining: state.rollsRemaining - 1,
-        scoreFrozen: false
+        scoresFrozen: false
       };
     case FREEZE_SCORE:
-      return { ...state, rollsRemaining: 3, scoreFrozen: true };
+      return { ...state, rollsRemaining: 3, scoresFrozen: true };
     default:
       return state;
   }
