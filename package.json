@@ -25,5 +25,6 @@
     "chai": "*",
     "mocha": "*",
     "redux-devtools": "^3.4.0"
-  }
+  },
+  "homepage": "."
 }

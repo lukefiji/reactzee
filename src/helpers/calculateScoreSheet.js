@@ -145,6 +145,3 @@ function calculateFullHouse(diceArr) {
     findMultiples(diceArr, 2, true) && findMultiples(diceArr, 3, true);
   return isFullHouse ? 25 : 0;
 }
-
-// const test = calculateScoreSheet(rolledDice);
-// console.log(JSON.stringify(test, null, 2));

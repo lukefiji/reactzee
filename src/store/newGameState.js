@@ -9,7 +9,8 @@ const newGameState = {
   gameState: {
     rollsRemaining: 3,
     scoresFrozen: false,
-    gameFinished: false
+    gameFinished: false,
+    totalScore: 0
   },
   scoreSheet: {
     aces: { value: null, frozen: false },

@@ -47,8 +47,6 @@ export function freezeScore(scoreItem) {
     // Get gameState.scoreSheet slice of state
     const { scoreSheet, gameState: { scoresFrozen } } = getState();
 
-    console.log(scoreSheet);
-
     // Single out score item
     const item = scoreSheet[scoreItem];
 
@@ -60,8 +58,12 @@ export function freezeScore(scoreItem) {
       });
 
       if (allValuesFrozen(scoreSheet, scoreItem)) {
+        const totalScore = Object.keys(scoreSheet).reduce((sum, key) => {
+          return sum + scoreSheet[key].value;
+        }, 0);
         dispatch({
-          type: END_GAME
+          type: END_GAME,
+          totalScore
         });
       }
     }

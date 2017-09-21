@@ -1,4 +1,4 @@
-import { ROLL_DICE, FREEZE_SCORE } from "../actions/actionTypes";
+import { ROLL_DICE, FREEZE_SCORE, END_GAME } from "../actions/actionTypes";
 
 function gameState(state = {}, action) {
   switch (action.type) {
@@ -10,6 +10,14 @@ function gameState(state = {}, action) {
       };
     case FREEZE_SCORE:
       return { ...state, rollsRemaining: 3, scoresFrozen: true };
+    case END_GAME:
+      return {
+        ...state,
+        rollsRemaining: 0,
+        scoresFrozen: true,
+        gameFinished: true,
+        totalScore: action.totalScore
+      };
     default:
       return state;
   }
